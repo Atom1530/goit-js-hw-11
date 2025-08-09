@@ -8,12 +8,18 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <ul>
-      <li><a href="./1-timer.html">Таймер</a></li>
-      <li><a href="./2-snackbar.html">Генератор промісів</a></li>
-    </ul>
+    <form class="form">
+      <label>
+        <input
+          type="text"
+          name="searchText"
+          placeholder="Search images..."
+          required
+        />
+      </label>
+      <button type="submit">Search</button>
+    </form>
 
-    <script href="/src/js/1-timer.js"></script>
-    <script href="/src/js/2-snackbar.js"></script>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
