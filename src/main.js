@@ -18,7 +18,7 @@ form.addEventListener('submit', (e) => {
         if (!message) {
             iziToast.error({
                 position: 'topRight',
-                title: 'Ерор',
+                title: 'Error',
                 message: 'Ви нічого не ввели!'
             });
             return;
@@ -26,6 +26,8 @@ form.addEventListener('submit', (e) => {
         clearGallery();
         showLoader();
 
+    
+         const oldText = submitBtn.textContent;  
         submitBtn.disabled = true;
 
         
@@ -34,7 +36,7 @@ form.addEventListener('submit', (e) => {
             const images = result.data.hits;
         
             if (!images.length) {
-                iziToast.error({
+                iziToast.warning({
                     position: 'topRight',
                     title: 'Немає результатів',
                     message: 'Нічого не знайдено'
