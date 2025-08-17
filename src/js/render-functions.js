@@ -2,23 +2,13 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 let lightbox;
-let loaderEl;
-
+const galleryEl = document.querySelector('#gallery');
+const loaderEl  = document.querySelector('.loader');
 
 export function createGallery(images = []) {
 
-  let gallery = document.querySelector('#gallery');
-
-  if (!gallery) {
-    gallery = document.createElement('div');
-    gallery.id = 'gallery';
-    gallery.classList.add('gallery');
-    document.body.appendChild(gallery); 
-  }
-
-  const markup = images
-    .map(
-      ({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `
+  const markup = images.map(
+    ({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `
       <div class="photo-card">
         <a class="gallery__item" href="${largeImageURL}">
           <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" />
@@ -30,10 +20,9 @@ export function createGallery(images = []) {
           <li><b>Downloads:</b> ${downloads}</li>
         </ul>
       </div>`
-    )
-    .join('');
+  ).join('');
 
-  gallery.insertAdjacentHTML('beforeend', markup);
+  galleryEl.insertAdjacentHTML('beforeend', markup);
 
   if (!lightbox) {
     lightbox = new SimpleLightbox('#gallery a', {
@@ -45,29 +34,14 @@ export function createGallery(images = []) {
   }
 }
 
-
 export function clearGallery() {
-  const gallery = document.querySelector('#gallery');
-  if (gallery) gallery.innerHTML = '';
-}
-
-
-function ensureLoader() {
-  if (!loaderEl) {
-    loaderEl = document.createElement('div');
-    loaderEl.classList.add('loader', 'is-hidden');
-    loaderEl.innerHTML = `<span class="loader__spinner"></span>`;
-    document.querySelector('form').insertAdjacentElement('afterend', loaderEl);
-  }
+  galleryEl.innerHTML = '';
 }
 
 export function showLoader() {
-  ensureLoader();
   loaderEl.classList.remove('is-hidden');
 }
 
 export function hideLoader() {
-  if (loaderEl) {
-    loaderEl.classList.add('is-hidden');
-  }
+  loaderEl.classList.add('is-hidden');
 }
