@@ -4,15 +4,21 @@ axios.defaults.baseURL = 'https://pixabay.com/api/';
 const API_KEY = '51662095-362d68f1fb432ef34c7441ea2';
 
 
- export function getImagesByQuery(query) {
-   const ImgArr =  axios.get('', {
-        params: {
-            key: API_KEY,
-            q: query,
-            image_type: 'photo',
-            orientation: 'horizontal',
-            safesearch: true,
-        },
-    });
-     return ImgArr.data;
+export function getImagesByQuery(query) {
+  return axios.get('', {
+    params: {
+      key: API_KEY,
+      q: query,
+      image_type: 'photo',
+      orientation: 'horizontal',
+      safesearch: true,
+    },
+  })
+  .then(response => {
+    return response.data;   
+  })
+  .catch(error => {
+    console.error('Помилка при запиті:', error);
+    throw error;
+  });
 }

@@ -31,9 +31,9 @@ form.addEventListener('submit', (e) => {
         submitBtn.disabled = true;
 
         
-        getImagesByQuery(message).then(result => {
+        getImagesByQuery(message).then(data => {
    
-            const images = result.hits;
+            const images = data.hits;
         
             if (!images.length) {
                 iziToast.warning({
