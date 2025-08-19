@@ -33,7 +33,7 @@ form.addEventListener('submit', (e) => {
         
         getImagesByQuery(message).then(result => {
    
-            const images = result.data.hits;
+            const images = result.hits;
         
             if (!images.length) {
                 iziToast.warning({

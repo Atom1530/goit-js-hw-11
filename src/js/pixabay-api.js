@@ -5,7 +5,7 @@ const API_KEY = '51662095-362d68f1fb432ef34c7441ea2';
 
 
  export function getImagesByQuery(query) {
-    return axios.get('', {
+   const ImgArr =  axios.get('', {
         params: {
             key: API_KEY,
             q: query,
@@ -14,5 +14,5 @@ const API_KEY = '51662095-362d68f1fb432ef34c7441ea2';
             safesearch: true,
         },
     });
-    
+     return ImgArr.data;
 }
